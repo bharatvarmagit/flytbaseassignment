@@ -1,0 +1,44 @@
+
+
+<google-map
+  height="400px"
+  width="750px"
+  [center]="center"
+  [zoom]="zoom"
+  (mapClick)="addMarker($event)">
+    @for (position of markerPositions; track position) {
+
+      <map-marker [position]="position" [options]="markerOptions"  />
+    }
+</google-map>
+
+
+
+<button (click)="addCoords()"> add coords </button>
+
+
+<div class="add-lessons-form" [formGroup]="form">
+    <ng-container formArrayName="coords">
+        <ng-container *ngFor="let coordForm of coords.controls; let i = index">
+            <div class="lesson-form-row" [formGroupName]="i">
+                    <input
+                          formControlName="lat"
+                          placeholder="Latitude">
+                    <input
+                          formControlName="lng"
+                          placeholder="Longitude">
+
+                <button class="delete-btn" (click)="deleteCoords(i)">
+                    delete</button>
+            </div>
+        </ng-container>
+         <p></p>
+    </ng-container>
+
+    <p>
+
+    </p>
+
+
+
+</div>
